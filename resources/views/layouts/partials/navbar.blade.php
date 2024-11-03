@@ -6,9 +6,8 @@ class="inset-x-0 top-0 z-50 bg-zinc-900/20 text-zinc-400 shadow-sm ring-1 ring-w
         <!-- Logo -->
         <div class="flex items-center justify-start">
             <div class="flex flex-shrink-0 items-center">
-                <a href="{{ route('blog.index') }}">
-                    <img class="block h-10 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=emerald&shade=600" alt="Logo" />
+                <a href="#">
+                    <img class="block h-5 w-auto" src="{{ asset('images/logo-2.png') }}" alt="" />
                 </a>
             </div>
         </div>
@@ -16,7 +15,7 @@ class="inset-x-0 top-0 z-50 bg-zinc-900/20 text-zinc-400 shadow-sm ring-1 ring-w
         <!-- Search Box -->
         <div class="min-w-0 flex-grow px-0">
             <div class="mx-auto flex items-center px-0 py-4">
-                <form class="w-full" action="{{ route('blog.index') }}" method="GET">
+                <form class="w-full" action="" method="GET">
                     <label class="sr-only" for="search">Search</label>
                     <div class="relative">
                         <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -30,7 +29,7 @@ class="inset-x-0 top-0 z-50 bg-zinc-900/20 text-zinc-400 shadow-sm ring-1 ring-w
                         </div>
                         <input
                             class="ui-not-focus-visible:outline-none block w-full rounded-full border-0 bg-white/5 py-3 pl-10 pr-3 text-lg text-zinc-400 ring-1 ring-inset ring-white/10 transition placeholder:text-zinc-400 hover:ring-white/20 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-2xl sm:leading-6 lg:flex"
-                            id="search" name="search" value="{{ request('search') }}" placeholder="Search"
+                            id="search" name="search" value="" placeholder="Search"
                             type="search" />
                     </div>
                 </form>

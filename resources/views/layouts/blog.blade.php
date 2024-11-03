@@ -6,7 +6,7 @@
 
     @include('layouts.partials.head-script')
 
-    <title>@yield('title', 'Laravel Blog' | {{ env('APP_NAME', 'Laravel Blog') }})</title>
+    <title>@yield('title', env('APP_NAME', 'Laravel Blog'))</title>
 </head>
 <body class="bg-zinc-900 antialiased ">
     <!-- BG Gradient  -->
