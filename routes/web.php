@@ -22,7 +22,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->prefix('admin/')
 ->name('admin.')
 ->group(function () {
-    Route::resource('/categories', CategoryController::class);
+    Route::resource('/categories', CategoryController::class)->except('show');
     Route::resource('/posts', PostController::class);
 
 
