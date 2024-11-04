@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Str;
 
 class CategoryController extends Controller
 {
@@ -30,7 +31,24 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+
+
+        // Validated
+
+        $validated = $request->validated();
+
+        $validated['slug'] = str($request->validated('name'))->slug();
+
+        $category = Category::create($validated);
+        // dd($category);
+
+        if ($category) {
+            return redirect()->route('admin.categories.index')->with('success', 'Category created successfully');
+        }
+
+        return back();
+
+        // Category
     }
 
     /**
