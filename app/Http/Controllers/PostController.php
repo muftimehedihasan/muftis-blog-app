@@ -69,7 +69,12 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $validated = $request->validated();
+        if ($validated['title'] != $post->title) {
+            $validated['slug'] = str($validated['title'])->slug();
+        }
+        $post->updateOrFail($validated);
+        return redirect()->route('admin.posts.index')->with('success', 'Post updated successfully');
     }
 
     /**
@@ -77,6 +82,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('admin.posts.index')->with('success', 'Post deleted successfully');
     }
 }
