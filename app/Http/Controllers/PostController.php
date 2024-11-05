@@ -60,7 +60,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categories = Category::latest()->get();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
