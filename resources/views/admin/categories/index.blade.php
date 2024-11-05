@@ -79,7 +79,22 @@
             </td>
             <td class="px-6 space-x-4 py-4 text-right">
                 <a href="{{ route('admin.categories.edit', $category) }}" class="font-medium  text-blue-600 dark:text-blue-500 hover:underline ">Edit</a>
-                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+
+
+                <form class="inline-flex"
+                action="{{ route('admin.categories.destroy', $category) }}"
+                method="POST" onclick="return confirm('Are you sure, bro?')">
+                @csrf
+                @method('DELETE')
+
+                <button
+                    class="font-medium text-red-600 hover:underline dark:text-red-500"
+                    type="submit">Delete</button>
+                </form>
+
+
+
+
             </td>
         </tr>
 
