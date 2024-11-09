@@ -31,20 +31,30 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        // Create user with is_admin field (Assuming is_admin is a boolean field)
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            // For simplicity, let's assume you want to set the default user role to regular user (is_admin = 0)
+            'is_admin' => false,
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // Check if the user is an admin or regular user and redirect accordingly
+        if ($user->is_admin) {
+            // Redirect to the admin dashboard
+            return redirect()->route('admin.dashboard');
+        }
+
+        // Redirect to the user dashboard
+        return redirect()->route('user.dashboard');
     }
 }

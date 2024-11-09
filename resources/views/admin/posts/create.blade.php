@@ -1,10 +1,7 @@
-@section('title', 'Write a New Post')
-<x-app-layout>
-<x-slot name="header">
+
     <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
         Write a New Post
     </h2>
-</x-slot>
 
 <div class="py-12">
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -14,27 +11,27 @@
                 {{-- Write a New Post Form --}}
                 <form class="space-y-6" method="post" action="{{ route('admin.posts.store') }}" novalidate>
                     {{-- Title --}}
-                    <div>
+                    {{-- <div>
                         <x-input-label for="title" value="Title" />
                         <x-text-input class="block w-full mt-1" id="title" name="title" type="text"
                             :value="old('title')" required autofocus autocomplete="title" />
                         <x-input-error class="mt-2" :messages="$errors->get('title')" />
-                    </div>
+                    </div> --}}
 
                     {{-- Body --}}
                     <div>
-                        <x-input-label for="body" value="Body" />
+                        <input for="body" value="Body" />
                         <textarea
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-600 dark:focus:ring-indigo-600"
                             id="body" name="body" rows="4" placeholder="Write your thoughts here..." required autocomplete="body">{{ old('body') }}</textarea>
 
 
-                        <x-input-error class="mt-2" :messages="$errors->get('body')" />
+                        <input class="mt-2" :messages="$errors->get('body')" />
                     </div>
 
                     {{-- Category --}}
                     <div>
-                        <x-input-label for="categories" value="Category" />
+                        <input for="categories" value="Category" />
 
                         <select
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-600 dark:focus:ring-indigo-600"
@@ -45,14 +42,13 @@
                                     {{ $category->name }}</option>
                             @endforeach
                         </select>
-                        <x-input-error class="mt-2" :messages="$errors->get('category_id')" />
+                        <input class="mt-2" :messages="$errors->get('category_id')" />
                     </div>
 
-                    <x-primary-button>Create</x-primary-button>
+                    <button>Create</button>
                     @csrf
                 </form>
             </div>
         </div>
     </div>
 </div>
-</x-app-layout>

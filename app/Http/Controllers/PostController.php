@@ -82,4 +82,12 @@ class PostController extends Controller
 
         return to_route('admin.posts.index')->with('success', 'Post Deleted Successfully');
     }
+
+
+    public function show($id)
+{
+    $post = Post::with('comments.user')->findOrFail($id);
+    return view('blog.show', compact('post'));
+}
+
 }

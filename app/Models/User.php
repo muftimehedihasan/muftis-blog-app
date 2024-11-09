@@ -18,9 +18,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name', 'email', 'password', 'is_admin',
+    ];
+
+    protected $attributes = [
+        'is_admin' => false, // Ensure that is_admin is always set to false by default
     ];
 
     /**
@@ -32,6 +34,12 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+
+    public function getIsAdminAttribute(): bool
+    {
+        return (bool) $this->attributes['is_admin'] ?? false;
+    }
 
     /**
      * Get the attributes that should be cast.

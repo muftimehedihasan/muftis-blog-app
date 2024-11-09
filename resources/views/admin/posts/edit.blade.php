@@ -49,7 +49,7 @@
                             <x-input-error class="mt-2" :messages="$errors->get('category_id')" />
                         </div>
 
-                        <x-primary-button>Edit</x-primary-button>
+                        <button>Edit</button>
                         @csrf
                         @method('PUT')
                     </form>
@@ -57,4 +57,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+{{-- </x-app-layout> --}}

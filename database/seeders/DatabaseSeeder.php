@@ -2,21 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
+    public function run()
     {
-        // Generate the Admin User
-        User::factory()->admin()->create();
-
         $this->call([
+            UserSeeder::class,    // Add this line to run UserSeeder first
             CategorySeeder::class,
             PostSeeder::class,
         ]);
