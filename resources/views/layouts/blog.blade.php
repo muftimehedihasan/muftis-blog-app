@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="h-full" lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     @include('layouts.partials.head-script')
 
-    <title>@yield('title', env('APP_NAME', 'Laravel Blog'))</title>
+    <title>@yield('title', 'Firoza Blog') | {{ env('APP_NAME', 'Firoza') }}</title>
 </head>
-<body class="bg-zinc-900 antialiased ">
+
+<body class="bg-zinc-900 antialiased">
     <!-- BG Gradient  -->
     <div class="absolute inset-0 -z-10 mx-0 max-w-none overflow-hidden">
         <div
@@ -34,9 +36,10 @@
             </div>
         </div>
     </div>
+
     @include('layouts.partials.navbar')
 
     @yield('main_content')
-
 </body>
+
 </html>

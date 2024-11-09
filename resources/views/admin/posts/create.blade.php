@@ -1,5 +1,3 @@
-create post form
-
 @section('title', 'Write a New Post')
 <x-app-layout>
 <x-slot name="header">

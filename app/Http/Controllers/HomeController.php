@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -28,7 +28,7 @@ class HomeController extends Controller
             })
             ->latest()
             ->paginate(10);
-
+            
         return view('blog.index', [
             'posts' => $posts,
             'categories' => Category::withCount('posts')->latest()->get(),

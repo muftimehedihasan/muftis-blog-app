@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
-    /** @use HasFactory<\Database\Factories\CategoryFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -16,8 +15,8 @@ class Category extends Model
         'slug',
     ];
 
-    public function posts(): HasMany {
-        return $this->hasMany(Post::class, 'category_id');
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
     }
-
 }

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
-use Str;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -14,8 +13,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest()->paginate(10);
-        return view('admin.categories.index' , compact('categories'));
+        $categories = Category::withCount('posts')->latest()->paginate(10);
+
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -31,30 +31,16 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        // Validated
-
         $validated = $request->validated();
-
-        $validated['slug'] = str($request->validated('name'))->slug();
+        $validated['slug'] = str($validated['name'])->slug();
 
         $category = Category::create($validated);
-        // dd($category);
 
         if ($category) {
-            return redirect()->route('admin.categories.index')->with('success', 'Category created successfully');
+            return to_route('admin.categories.index')->with('success', 'Category Created Successfully');
         }
 
         return back();
-
-        // Category
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Category $category)
-    {
-        //
     }
 
     /**
@@ -62,9 +48,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        // dd($category);
         return view('admin.categories.edit', compact('category'));
-
     }
 
     /**
@@ -73,14 +57,14 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         $validated = $request->validated();
-        if ($validated['name'] != $category->name) {
-            $validated['slug'] = str($request->validated('name'))->slug();
+
+        if ($validated['name'] !== $category->name) {
+            $validated['slug'] = str($validated['name'])->slug();
         }
 
         $category->updateOrFail($validated);
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully');
-
+        return to_route('admin.categories.index')->with('success', 'Category Updated Successfully');
     }
 
     /**
@@ -90,7 +74,6 @@ class CategoryController extends Controller
     {
         $category->deleteOrFail();
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category Deleted successfully');
-
+        return to_route('admin.categories.index')->with('success', 'Category Deleted Successfully');
     }
 }

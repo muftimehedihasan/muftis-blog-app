@@ -33,25 +33,20 @@
                         <!-- Author Info -->
                         <div class="flex items-center gap-2">
                             <img class="h-8 w-8 rounded-full p-0.5 ring-1 ring-emerald-500"
-                                src="https://avatars.githubusercontent.com/u/130230722?v=4" alt="{{ $post->user->name }}" />
+                                src="https://avatars.githubusercontent.com/u/61485238?v=4" alt="{{ $post->user->name }}" />
                             <h4>{{ $post->user->name }}</h4>
                         </div>
 
+
                         <!-- Date -->
                         <p class="pl-4 text-lg font-semibold text-zinc-400 sm:text-base">
-                            @if ($post->created_at)
-                                {{ $post->created_at->diffForHumans() }}
-                            @else
-                                <span class="text-red-500">Date not available</span>
-                            @endif
+                            {{ $post->created_at->diffForHumans() }}
                         </p>
 
                         <!-- Category Pill -->
                         <div class="pl-4">
                             <a class="inline-flex justify-center gap-0.5 overflow-hidden rounded-full bg-emerald-400/10 px-3 py-1 text-sm font-medium text-emerald-400 ring-1 ring-inset ring-emerald-400/20 transition hover:bg-emerald-400/10 hover:text-emerald-300 hover:ring-emerald-300 sm:text-base"
-                               href="{{ route('blog.index', ['category' => $post->category->slug]) }}">
-                                {{ $post->category->name }}
-                            </a>
+                                href="{{ route('blog.index', ['category' => $post->category->slug]) }}">{{ $post->category->name }}</a>
                         </div>
 
                         <!-- View Count Pill -->
@@ -69,6 +64,7 @@
                                 </span> {{ number_format($post->views) }} Views
                             </div>
                         </div>
+
                     </div>
 
                     <hr class="my-8 h-px border-0 bg-zinc-700">

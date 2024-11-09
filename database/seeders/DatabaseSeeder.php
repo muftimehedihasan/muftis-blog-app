@@ -13,13 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Admin generate
+        // Generate the Admin User
         User::factory()->admin()->create();
 
         $this->call([
             CategorySeeder::class,
             PostSeeder::class,
         ]);
-
     }
 }

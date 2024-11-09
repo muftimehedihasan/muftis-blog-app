@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use App\Models\Category;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Category;
+use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -16,7 +16,7 @@ class PostController extends Controller
     public function index()
     {
         return view('admin.posts.index', [
-        'posts' => Post::with('user', 'category')->latest()->paginate(10),
+            'posts' => Post::with('user', 'category')->latest()->paginate(10),
         ]);
     }
 
@@ -48,19 +48,12 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Post $post)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Post $post)
     {
         $categories = Category::latest()->get();
+
         return view('admin.posts.edit', compact('post', 'categories'));
     }
 
@@ -70,11 +63,14 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
         $validated = $request->validated();
-        if ($validated['title'] != $post->title) {
+
+        if ($validated['title'] !== $post->title) {
             $validated['slug'] = str($validated['title'])->slug();
         }
+
         $post->updateOrFail($validated);
-        return redirect()->route('admin.posts.index')->with('success', 'Post updated successfully');
+
+        return to_route('admin.posts.index')->with('success', 'Post Updated Successfully');
     }
 
     /**
@@ -82,7 +78,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->delete();
-        return redirect()->route('admin.posts.index')->with('success', 'Post deleted successfully');
+        $post->deleteOrFail();
+
+        return to_route('admin.posts.index')->with('success', 'Post Deleted Successfully');
     }
 }
