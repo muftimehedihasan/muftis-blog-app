@@ -1,6 +1,6 @@
 @extends('layouts.blog')
 
-@section('title', 'Welcome to Firoza')
+@section('title', 'Welcome to Muftis Notes')
 
 @section('main_content')
     <!-- Main Contents -->
@@ -43,7 +43,7 @@
                         <!-- Author Info -->
                         <div class="flex items-center gap-2">
                             <img class="h-8 w-8 rounded-full p-0.5 ring-1 ring-emerald-500"
-                                src="https://avatars.githubusercontent.com/u/61485238?v=4" alt="{{ $post->user->name }}" />
+                                src="https://avatars.githubusercontent.com/u/130230722?v=4" alt="{{ $post->user->name }}" />
                             <h4>{{ $post->user->name }}</h4>
                         </div>
 

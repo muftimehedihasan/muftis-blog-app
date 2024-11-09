@@ -26,7 +26,7 @@
                 <!-- Author, Date, Category, Views -->
                 <div class="flex items-center gap-2">
                     <img class="h-8 w-8 rounded-full p-0.5 ring-1 ring-emerald-500"
-                         src="https://avatars.githubusercontent.com/u/61485238?v=4" alt="{{ $post->user->name }}"/>
+                         src="https://avatars.githubusercontent.com/u/130230722?v=4" alt="{{ $post->user->name }}"/>
                     <h4>{{ $post->user->name }}</h4>
                 </div>
                 <p class="pl-4 text-lg font-semibold text-zinc-400 sm:text-base">
